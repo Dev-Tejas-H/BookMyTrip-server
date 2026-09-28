@@ -5,8 +5,7 @@
 // Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
 generator client {
-  provider = "prisma-client"
-  output   = "../generated/prisma"
+  provider = "prisma-client-js"
 }
 
 datasource db {
@@ -15,11 +14,23 @@ datasource db {
 }
 
 model User {
-  id                  String        @id @default(cuid())
-  email               String        @unique
-  password            String        
-  name                String      
-  phoneNumber         String?
-  createdAt           DateTime      @default(now())
-  updatedAt           DateTime      @updatedAt
+  id          String    @id @default(cuid())
+  email       String    @unique
+  password    String
+  name        String?
+  phoneNumber String?
+  isVerified  Boolean   @default(false)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
 }
+
+// model OtpVerification {
+//   id        Int      @id @default(autoincrement())
+//   email     String
+//   otp       String
+//   expiresAt DateTime
+//   used      Boolean  @default(false)
+//   createdAt DateTime @default(now())
+// 
+//   @@index([email])
+// }
