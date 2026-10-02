@@ -12,7 +12,8 @@ import { SignUpDto } from './dto/auth.dto';
 // import { SendOtpDto } from './dto/send-otp.dto';
 // import { VerifyOtpDto } from './dto/verify-otp.dto'; bcrypt 
 import * as bcrypt from 'bcrypt';
-import { PrismaClientKnownRequestError } from 'generated/prisma/internal/prismaNamespace';
+import { Prisma } from '@prisma/client';
+// import { PrismaClientKnownRequestError } from 'generated/prisma/internal/prismaNamespace';
 
 @Injectable()
 export class AuthService {
@@ -47,9 +48,9 @@ export class AuthService {
 			return { message: 'User registered successfully', accessToken };
 
 		} catch(error) {
-			if (error instanceof PrismaClientKnownRequestError && error.code === 'P2002') {
-				throw new ConflictException('Email is already registered');
-			}
+			// if (error instanceof PrismaClientKnownRequestError && error.code === 'P2002') {
+			// 	throw new ConflictException('Email is already registered');
+			// }
 			throw new InternalServerErrorException('Registration failed');
 
 		}
